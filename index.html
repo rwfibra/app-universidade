@@ -127,7 +127,7 @@
                                 <h3 class="font-bold text-white text-xl tracking-wide">UNIASSELVI</h3>
                             </div>
                             <div class="p-6 flex flex-col items-center flex-grow">
-                                <img id="modalStudentPhoto" src="https://placehold.co/150x150/E2E8F0/4A5568?text=Foto" alt="Foto do Aluno" class="w-32 h-32 rounded-full border-4 border-white -mt-20 shadow-lg">
+                                <img id="modalStudentPhoto" src="" alt="Foto do Aluno" class="w-32 h-32 rounded-full border-4 border-white -mt-20 shadow-lg object-cover">
                                 <h4 id="modalStudentName" class="text-2xl font-bold text-gray-800 mt-4 text-center">Nome Completo do Aluno</h4>
                                 <p id="modalStudentCourse" class="text-yellow-600 font-medium text-center">Curso do Aluno</p>
                                 <div class="w-full text-left mt-6 space-y-3">
@@ -213,14 +213,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             // --- DADOS FALSOS PARA DEMONSTRAÇÃO ---
             const fakeStudentData = {
-                id: '202412345',
-                password: '123',
+                id: '20231234',
+                password: 'cc11dd22cc',
                 name: 'Rodrigo L. Barroso',
                 fullName: 'Rodrigo Laurindo Barroso',
                 cpf: '22673912878',
                 course: 'Tecnologia da Informação',
                 validity: '31/12/2025',
-                photoUrl: 'https://placehold.co/150x150/FEF9C3/854D0E?text=Rodrigo'
+                // ↓↓↓ AQUI É ONDE VOCÊ COLOCA O NOME DO ARQUIVO DA FOTO ↓↓↓
+                //    (Exatamente como você enviou para o GitHub, ex: 'minha-foto.jpeg')
+                photoUrl: 'NOME_DO_SEU_ARQUIVO_DE_FOTO.jpg' 
             };
             
             const fakeTimetableData = [

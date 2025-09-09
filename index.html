@@ -70,6 +70,14 @@
             animation: gradient-animation 4s ease infinite;
         }
 
+        /* Efeito de gradiente para a tela de login (sem animação de texto) */
+        .login-gradient-text {
+             background: linear-gradient(90deg, #fde047, #facc15, #eab308, #facc15, #fde047);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -89,7 +97,7 @@
                          <h1 class="text-2xl font-bold text-gray-800">Portal do</h1>
                          <h2 class="text-3xl font-bold text-yellow-500 -mt-1">Aluno</h2>
                     </div>
-                    <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
+                    <h3 class="font-bold text-xl tracking-wide login-gradient-text">UNIASSELVI</h3>
                 </div>
                 <p class="text-gray-500 mb-8 text-center">Acesse sua conta para continuar.</p>
                 <div class="space-y-4">
@@ -174,7 +182,7 @@
                     <div class="card-face card-front">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
                             <!-- CABEÇALHO DA CARTEIRINHA MODIFICADO -->
-                            <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 flex justify-between items-center">
+                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 flex justify-between items-center">
                                 <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
                                 <img id="modalStudentPhoto" src="" alt="Foto do Aluno" class="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover">
                             </div>
@@ -206,7 +214,7 @@
                     <!-- VERSO DA CARTEIRINHA -->
                     <div class="card-face card-back">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
-                            <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 text-center">
+                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 text-center">
                                 <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
                             </div>
                             <div class="p-4 flex flex-col items-center flex-grow text-center">
@@ -501,3 +509,4 @@
     </script>
 </body>
 </html>
+

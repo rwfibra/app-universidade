@@ -1,445 +1,75 @@
-
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carteirinha do Aluno - UNIASSELVI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
-        }
-        .modal {
-            transition: opacity 300ms ease-out, transform 300ms ease-out;
-        }
-        .modal.hidden {
-            display: none;
-        }
-        .modal-enter {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-        .modal-enter-active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .modal-leave {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .modal-leave-active {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        /* Estilos para o efeito de virar a carteirinha */
-        .card-flipper-container {
-            perspective: 1000px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-        }
-        .card-flipper {
-            position: relative;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-        .card-flipper.is-flipped {
-            transform: rotateY(180deg);
-        }
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
-            backface-visibility: hidden;
-        }
-        .card-back {
-            transform: rotateY(180deg);
-        }
-
-        /* Efeito de gradiente animado para o nome da universidade */
-        .animated-gradient {
-            background: linear-gradient(90deg, #fef9c3, #ffffff, #fef9c3);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-animation 4s ease infinite;
-        }
-
-        /* Efeito de gradiente para a tela de login (sem animação de texto) */
-        .login-gradient-text {
-             background: linear-gradient(90deg, #fde047, #facc15, #eab308, #facc15, #fde047);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Estilo para a barra vertical CREA */
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-        }
-    </style>
-</head>
-<body class="bg-slate-100">
-
-    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
-
-        <!-- TELA DE LOGIN -->
-        <div id="loginScreen" class="w-full max-w-sm">
-            <div class="bg-white p-8 rounded-2xl shadow-xl">
-                <div class="flex justify-between items-center mb-6">
-                    <div>
-                         <h1 class="text-2xl font-bold text-gray-800">Portal do</h1>
-                         <h2 class="text-3xl font-bold text-yellow-500 -mt-1">Aluno</h2>
-                    </div>
-                    <h3 class="font-bold text-xl tracking-wide login-gradient-text">UNIASSELVI</h3>
-                </div>
-                <p class="text-gray-500 mb-8 text-center">Acesse sua conta para continuar.</p>
-                <div class="space-y-4">
-                    <input id="studentId" type="text" placeholder="Nº de Matrícula" class="w-full px-4 py-3 bg-slate-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <input id="password" type="password" placeholder="Senha" class="w-full px-4 py-3 bg-slate-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <button id="loginButton" class="w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600 transition-all shadow hover:shadow-lg">Entrar</button>
-                </div>
-                <p id="loginError" class="text-red-500 text-sm mt-4 hidden">Matrícula ou senha inválida.</p>
-            </div>
-        </div>
-
-        <!-- TELA PRINCIPAL -->
-        <div id="mainScreen" class="hidden w-full max-w-md">
-             <div class="bg-white p-6 rounded-2xl shadow-xl w-full">
-                <div class="text-center mb-8">
-                    <h2 class="text-xl font-semibold text-gray-800">Bem-vindo(a),</h2>
-                    <h1 id="studentName" class="text-3xl font-bold text-yellow-600">Nome do Aluno</h1>
-                </div>
-                
-                <div class="space-y-3">
-                    <button id="showCardButton" class="w-full bg-yellow-500 text-white p-4 rounded-xl shadow-lg hover:bg-yellow-600 transition-all flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-white/20 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg></div>
-                        <div><p class="font-semibold">Minha Carteirinha</p><p class="text-sm opacity-90">Sua identificação de estudante</p></div>
-                    </button>
-                     <button id="showTimetableButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                         <div><p class="font-semibold">Meus Horários</p><p class="text-sm text-slate-500">Veja sua grade de aulas</p></div>
-                     </button>
-                     <button id="showGradesButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
-                        <div><p class="font-semibold">Notas e Faltas</p><p class="text-sm text-slate-500">Acompanhe seu desempenho</p></div>
-                    </button>
-                    <button id="showNoticesButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg></div>
-                        <div><p class="font-semibold">Mural de Avisos</p><p class="text-sm text-slate-500">Fique por dentro das novidades</p></div>
-                    </button>
-                    <button id="showProfessionalCardButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
-                        <div><p class="font-semibold">Carteira Profissional</p><p class="text-sm text-slate-500">Documentos de conselhos (CREA, etc)</p></div>
-                    </button>
-                </div>
-            </div>
-             <button id="logoutButton" class="mt-6 text-gray-500 font-medium hover:text-yellow-600">Sair</button>
-        </div>
-    </div>
-
-    <!-- MODAL DA CARTEIRINHA -->
-    <div id="cardModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 modal-enter">
-        <div class="w-full max-w-sm">
-            <div class="card-flipper-container cursor-pointer w-full h-[580px]" id="cardContainer">
-                <div id="cardFlipper" class="card-flipper w-full h-full">
-                    <!-- FRENTE DA CARTEIRINHA -->
-                    <div class="card-face card-front">
-                        <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
-                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 flex justify-between items-center">
-                                <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
-                                <img id="modalStudentPhoto" src="" alt="Foto do Aluno" class="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover">
-                            </div>
-                            <div class="p-6 flex flex-col items-center flex-grow">
-                                <h4 id="modalStudentName" class="text-2xl font-bold text-gray-800 mt-2 text-center">Nome Completo do Aluno</h4>
-                                <p id="modalStudentCourse" class="text-yellow-600 font-medium text-center">Curso do Aluno</p>
-                                <div class="w-full text-left mt-6 space-y-3">
-                                    <div><span class="text-sm text-gray-400 font-bold uppercase">Matrícula</span><p id="modalStudentId" class="text-lg font-semibold text-gray-700">000000</p></div>
-                                    <div><span class="text-sm text-gray-400 font-bold uppercase">CPF</span><p id="modalStudentCpf" class="text-lg font-semibold text-gray-700">000.000.000-00</p></div>
-                                    <div><span class="text-sm text-gray-400 font-bold uppercase">Validade</span><p id="modalStudentValidity" class="text-lg font-semibold text-gray-700">00/00/0000</p></div>
-                                </div>
-                                <div class="mt-auto w-full flex justify-center py-2"><img id="qrCodeImg" src="" alt="QR Code do Aluno" class="w-28 h-28"></div>
-                                <p class="text-xs text-gray-400">Clique na carteirinha para virar</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- VERSO DA CARTEIRINHA -->
-                    <div class="card-face card-back">
-                        <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
-                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 text-center"><h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3></div>
-                            <div class="p-4 flex flex-col items-center flex-grow text-center">
-                                <p class="font-semibold text-gray-700 mt-2 text-sm">Documento de Identificação Estudantil</p>
-                                <img id="barcode" src="" alt="Código de Barras" class="mt-4 max-w-full max-h-16 object-contain">
-                                <div class="text-center text-xs text-gray-500 mt-4 border-t pt-2 w-full space-y-2">
-                                    <p>Este documento é pessoal e intransferível.</p>
-                                    <p>Válido em todo território nacional mediante apresentação de documento oficial com foto.</p>
-                                    <p class="font-bold mt-4 animated-gradient">UNIASSELVI</p><p>Centro Universitário Leonardo da Vinci</p>
-                                </div>
-                                <div class="mt-auto"><p class="text-xs text-gray-400">Clique na carteirinha para virar</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button id="closeCardButton" class="mt-4 w-full bg-white/80 backdrop-blur-sm text-gray-800 py-3 rounded-lg font-semibold hover:bg-white transition-colors">Fechar</button>
-        </div>
-    </div>
-    
-    <!-- MODAIS DE CONTEÚDO -->
-    <div id="timetableModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Meus Horários</h3></div><div id="timetableContent" class="p-6 space-y-6 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeTimetableButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
-    <div id="gradesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Notas e Faltas</h3></div><div id="gradesContent" class="p-6 space-y-4 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeGradesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
-    <div id="noticesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Mural de Avisos</h3></div><div id="noticesContent" class="p-6 space-y-4 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeNoticesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
-
-    <!-- MODAL CARTEIRA PROFISSIONAL (CREA) - DESIGN IDÊNTICO AO OFICIAL -->
-    <div id="professionalCardModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-        <div class="w-full max-w-sm">
-             <div id="professionalCardContent" class="w-full bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col relative aspect-[85.6/54]">
-                <!-- Background Image -->
-                <div class="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-5" style="background-image: url('https://i.imgur.com/g0y42Dk.png');"></div>
-                <!-- Vertical Bar -->
-                <div class="absolute left-0 top-0 bottom-0 flex items-center justify-center pl-1">
-                    <div class="vertical-text text-slate-300 font-bold text-[7px] tracking-widest space-y-2">
-                        <span>CONFEA • CREA</span>
-                        <span>CONFEA • CREA</span>
-                        <span>CONFEA • CREA</span>
-                    </div>
-                </div>
-                <!-- Main Content -->
-                <div class="p-2.5 z-10 flex flex-col h-full">
-                    <div class="flex items-start justify-between">
-                        <img src="https://i.imgur.com/g0y42Dk.png" alt="Brasão da República" class="h-10" onerror="this.style.display='none'">
-                        <div class="text-[6px] text-center font-semibold text-blue-900 leading-tight">
-                            <p>REPÚBLICA FEDERATIVA DO BRASIL</p>
-                            <p>SERVIÇO PÚBLICO FEDERAL</p>
-                            <p>CONSELHO FEDERAL DE ENGENHARIA E AGRONOMIA</p>
-                            <p>CONSELHO REGIONAL DE ENGENHARIA E AGRONOMIA</p>
-                            <p>CARTEIRA DE IDENTIDADE PROFISSIONAL</p>
-                        </div>
-                        <div class="text-center">
-                             <p class="font-bold text-blue-900 text-sm">CREA-SP</p>
-                             <p class="text-[7px] font-semibold text-blue-900">Registro Crea Nº</p>
-                             <p id="creaRegNumber" class="text-[7px] font-semibold text-blue-900 -mt-0.5"></p>
-                        </div>
-                    </div>
-                    <div class="flex-grow flex mt-1">
-                        <div class="w-1/4 flex flex-col justify-between">
-                            <div class="w-16 h-12 bg-gray-200 flex items-center justify-center rounded-md border border-gray-300">
-                               <img src="https://i.imgur.com/BHsS2s1.png" alt="Chip" class="w-full h-full object-cover rounded-md" onerror="this.style.display='none'">
-                            </div>
-                             <div class="text-[7px] font-bold text-blue-900">
-                                <p>TÍTULO PROFISSIONAL</p>
-                                <div id="creaTitles" class="font-semibold text-[8px] leading-tight"></div>
-                             </div>
-                             <div></div>
-                        </div>
-                        <div class="w-1/2 px-2 text-center text-blue-900">
-                             <p class="text-[7px] font-bold">NOME</p>
-                             <p id="creaName" class="text-sm font-semibold leading-tight"></p>
-                             <p class="text-[7px] font-bold mt-2">DATA DO REGISTRO NO CREA-SP</p>
-                             <p id="creaRegDate" class="text-sm font-semibold leading-tight"></p>
-                        </div>
-                        <div class="w-1/4 text-center">
-                            <img id="creaPhoto" src="" class="w-full border-2 border-blue-900">
-                            <div class="text-[7px] font-bold text-blue-900 mt-1">
-                                <p>REGISTRO NACIONAL</p>
-                                <p id="creaNatNumber" class="font-semibold text-xs"></p>
-                                <p class="mt-1">DATA DE EMISSÃO</p>
-                                <p id="creaIssueDate" class="font-semibold text-xs"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-end text-[6px] text-blue-900 font-semibold">
-                         <div class="text-center">
-                            <img src="https://i.imgur.com/8X1X8J4.png" alt="Assinatura Confea" class="h-4 mx-auto" onerror="this.style.display='none'">
-                            <p class="border-t border-blue-900 mt-0.5 px-2">PRESIDENTE DO CONFEA</p>
-                        </div>
-                         <div class="text-center">
-                             <img src="https://i.imgur.com/B1Q2e3f.png" alt="Assinatura Crea" class="h-4 mx-auto" onerror="this.style.display='none'">
-                            <p class="border-t border-blue-900 mt-0.5 px-2">PRESIDENTE DO CREA-SP</p>
-                        </div>
-                    </div>
-                    <div class="text-[5px] text-center mt-1 text-gray-600">
-                        Vale como Documento de Identidade em todo o território nacional e tem Fé Pública, conforme o § 2º do art. 56 da Lei nº 5194 de 24/12/66 e Lei nº 6206 de 07/05/75.
-                    </div>
-                </div>
-            </div>
-            <button id="closeProfessionalCardButton" class="mt-4 w-full bg-white/80 backdrop-blur-sm text-gray-800 py-3 rounded-lg font-semibold hover:bg-white transition-colors">Fechar</button>
-        </div>
-    </div>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modelo – Carteira CREA (layout base)</title>
+<style>
+:root {
+/* Paleta neutra (sem cores oficiais) */
+--bg: #f6f7f8;
+--ink: #1c1c1c;
+--muted: #6b7280;
+--line: #d1d5db;
+--chip: #e5e7eb;
+--shadow: 0 8px 24px rgba(0,0,0,.08);
+}
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const fakeStudentData = {
-                id: 'Mot671367', password: '123', name: 'Rodrigo Barroso',
-                fullName: 'Rodrigo L. Barroso', cpf: '22673912878',
-                course: 'Tecnologia da Informação', validity: '31/12/2025',
-                photoUrl: 'foto_rodrigo.jpeg' 
-            };
-            
-            const fakeTimetableData = [
-                { dia: "Segunda-feira", aulas: [{ horario: "19:00 - 20:40", materia: "Algoritmos e Lógica" }, { horario: "20:50 - 22:30", materia: "Banco de Dados" }]},
-                { dia: "Terça-feira", aulas: [{ horario: "19:00 - 22:30", materia: "Desenvolvimento Web" }]},
-                { dia: "Quarta-feira", aulas: [{ horario: "19:00 - 20:40", materia: "Engenharia de Software" }, { horario: "20:50 - 22:30", materia: "Redes de Computadores" }]},
-                { dia: "Sexta-feira", aulas: [{ horario: "19:00 - 22:30", materia: "Projeto Integrador" }]},
-            ];
-            
-            const fakeGradesData = [
-                { materia: "Algoritmos", n1: 8.5, n2: 9.0, mediaFinal: 8.8, faltas: 2 },
-                { materia: "Banco de Dados", n1: 7.0, n2: 7.5, mediaFinal: 7.3, faltas: 0 },
-                { materia: "Desenvolvimento Web", n1: 9.5, n2: 10.0, mediaFinal: 9.8, faltas: 1 },
-                { materia: "Eng. de Software", n1: 6.5, n2: 8.0, mediaFinal: 7.3, faltas: 4 },
-                { materia: "Redes", n1: 8.0, n2: 8.0, mediaFinal: 8.0, faltas: 0 },
-                { materia: "Projeto Integrador", n1: 10.0, n2: 9.5, mediaFinal: 9.8, faltas: 0 },
-            ];
-            
-            const fakeNoticesData = [
-                { date: "05/09/2025", title: "Início do Período de Rematrícula", content: "O período para rematrícula do próximo semestre já está aberto." },
-                { date: "01/09/2025", title: "Feriado Nacional - Independência", content: "Não haverá expediente acadêmico e administrativo no dia 7 de Setembro." },
-                { date: "28/08/2025", title: "Palestra sobre Carreira em TI", content: "Participe da palestra com especialistas do mercado no dia 15/09." },
-            ];
-            
-            const fakeProfessionalCardData = {
-                titles: ["TÉCNOLOGO EM ANÁLISE E DESENV. DE SISTEMAS"],
-                regNumber: "SP-5070422331/TD",
-                natNumber: "261884503-2",
-                regDate: "20/12/2025",
-                issueDate: "15/01/2026"
-            };
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+margin: 0;
+font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans,
+Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+background: #fff;
+color: var(--ink);
+display: grid;
+place-items: center;
+padding: 24px;
+}
 
-            const loginScreen = document.getElementById('loginScreen');
-            const mainScreen = document.getElementById('mainScreen');
-            const cardModal = document.getElementById('cardModal');
-            const timetableModal = document.getElementById('timetableModal');
-            const gradesModal = document.getElementById('gradesModal');
-            const noticesModal = document.getElementById('noticesModal');
-            const professionalCardModal = document.getElementById('professionalCardModal');
-            const cardContainer = document.getElementById('cardContainer');
-            const cardFlipper = document.getElementById('cardFlipper');
-            const studentIdInput = document.getElementById('studentId');
-            const passwordInput = document.getElementById('password');
-            const loginButton = document.getElementById('loginButton');
-            const loginError = document.getElementById('loginError');
-            const logoutButton = document.getElementById('logoutButton');
-            const showCardButton = document.getElementById('showCardButton');
-            const closeCardButton = document.getElementById('closeCardButton');
-            const showTimetableButton = document.getElementById('showTimetableButton');
-            const closeTimetableButton = document.getElementById('closeTimetableButton');
-            const showGradesButton = document.getElementById('showGradesButton');
-            const closeGradesButton = document.getElementById('closeGradesButton');
-            const showNoticesButton = document.getElementById('showNoticesButton');
-            const closeNoticesButton = document.getElementById('closeNoticesButton');
-            const showProfessionalCardButton = document.getElementById('showProfessionalCardButton');
-            const closeProfessionalCardButton = document.getElementById('closeProfessionalCardButton');
 
-            function formatCPF(cpf) { return cpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); }
+.wrapper { width: min(100%, 1000px); }
+.caption { margin: 12px 0 20px; color: var(--muted); font-size: 14px; }
 
-            function handleLogin() {
-                if (studentIdInput.value === fakeStudentData.id && passwordInput.value === fakeStudentData.password) {
-                    loginScreen.classList.add('hidden'); mainScreen.classList.remove('hidden');
-                    document.getElementById('studentName').textContent = fakeStudentData.name;
-                    loginError.classList.add('hidden');
-                } else { loginError.classList.remove('hidden'); }
-            }
-            
-            function populateCardModal() {
-                const fCpf = formatCPF(fakeStudentData.cpf);
-                document.getElementById('modalStudentPhoto').src = fakeStudentData.photoUrl;
-                document.getElementById('modalStudentName').textContent = fakeStudentData.fullName;
-                document.getElementById('modalStudentCourse').textContent = fakeStudentData.course;
-                document.getElementById('modalStudentId').textContent = fakeStudentData.id;
-                document.getElementById('modalStudentValidity').textContent = fakeStudentData.validity;
-                document.getElementById('modalStudentCpf').textContent = fCpf;
-                const qrData = `UNIASSELVI\nMatrícula: ${fakeStudentData.id}\nNome: ${fakeStudentData.fullName}\nCPF: ${fCpf}`;
-                document.getElementById('qrCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}&qzone=1`;
-                document.getElementById('barcode').src = `https://barcode.tec-it.com/barcode.ashx?data=${fakeStudentData.id}&code=Code128&dpi=96`;
-            }
-            
-            function populateTimetableModal() {
-                let html = '';
-                fakeTimetableData.forEach(item => {
-                    html += `<div class="border-b pb-4 last:border-b-0"><h4 class="text-xl font-bold text-yellow-600 mb-3">${item.dia}</h4><div class="space-y-2">`;
-                    item.aulas.forEach(a => { html += `<div class="flex justify-between items-center bg-slate-100 p-3 rounded-lg"><span class="font-semibold text-gray-700">${a.materia}</span><span class="text-sm text-gray-500">${a.horario}</span></div>`; });
-                    html += `</div></div>`;
-                });
-                document.getElementById('timetableContent').innerHTML = html;
-            }
-            
-            function populateGradesModal() {
-                let html = `<div class="grid grid-cols-4 gap-2 font-bold text-sm text-gray-500 border-b pb-2"><span>DISCIPLINA</span><span class="text-center">N1</span><span class="text-center">N2</span><span class="text-center">FALTAS</span></div>`;
-                fakeGradesData.forEach(item => {
-                    const mediaColor = item.mediaFinal >= 7 ? 'text-green-600' : 'text-red-600';
-                    html += `<div class="grid grid-cols-4 gap-2 items-center border-b py-3 text-sm"><span class="font-semibold text-gray-800">${item.materia}</span><span class="text-center text-gray-600">${item.n1.toFixed(1)}</span><span class="text-center text-gray-600">${item.n2.toFixed(1)}</span><span class="text-center text-gray-600">${item.faltas}</span></div><div class="text-right text-sm font-bold pr-2 -mt-2">Média Final: <span class="${mediaColor}">${item.mediaFinal.toFixed(1)}</span></div>`;
-                });
-                document.getElementById('gradesContent').innerHTML = html;
-            }
-            
-            function populateNoticesModal() {
-                let html = '';
-                fakeNoticesData.forEach(n => { html += `<div class="bg-slate-50 p-4 rounded-lg border border-slate-200"><p class="text-sm font-semibold text-yellow-600 mb-1">${n.date}</p><h4 class="text-lg font-bold text-gray-800 mb-2">${n.title}</h4><p class="text-gray-600">${n.content}</p></div>`; });
-                document.getElementById('noticesContent').innerHTML = html;
-            }
 
-            function populateProfessionalCardModal() {
-                document.getElementById('creaPhoto').src = fakeStudentData.photoUrl;
-                document.getElementById('creaName').textContent = fakeStudentData.fullName.toUpperCase();
-                document.getElementById('creaTitles').innerHTML = fakeProfessionalCardData.titles.join('<br>');
-                document.getElementById('creaRegNumber').textContent = fakeProfessionalCardData.regNumber;
-                document.getElementById('creaNatNumber').textContent = fakeProfessionalCardData.natNumber;
-                document.getElementById('creaRegDate').textContent = fakeProfessionalCardData.regDate;
-                document.getElementById('creaIssueDate').textContent = fakeProfessionalCardData.issueDate;
-            }
+/* Cartão no formato aproximado ID-1 (85.6mm × 54mm) */
+.id-card {
+aspect-ratio: 85.6 / 54;
+width: 960px; /* ajuste livre; responsivo mantém proporção */
+max-width: 100%;
+background: var(--bg);
+border: 1px solid var(--line);
+border-radius: 18px;
+box-shadow: var(--shadow);
+padding: 22px 26px;
+position: relative;
+overflow: hidden;
+}
 
-            function openModal(modal) {
-                if (modal.id === 'cardModal') populateCardModal();
-                if (modal.id === 'timetableModal') populateTimetableModal();
-                if (modal.id === 'gradesModal') populateGradesModal();
-                if (modal.id === 'noticesModal') populateNoticesModal();
-                if (modal.id === 'professionalCardModal') populateProfessionalCardModal();
-                if (modal.id === 'cardModal') cardFlipper.classList.remove('is-flipped');
-                modal.classList.remove('hidden'); requestAnimationFrame(() => modal.classList.add('modal-enter-active'));
-            }
 
-            function closeModal(modal) {
-                 modal.classList.remove('modal-enter-active');
-                 setTimeout(() => modal.classList.add('hidden'), 300);
-            }
+/* Marca d’água neutra (texto repetido, sem logotipos) */
+.watermark {
+position: absolute;
+inset: 0;
+pointer-events: none;
+opacity: .10;
+background:
+repeating-linear-gradient(
+45deg,
+transparent 0 20px,
+rgba(0,0,0,.04) 20px 40px
+);
+}
+.watermark::after{
+content: "CONFEA / CREA • IDENTIDADE PROFISSIONAL";
+position: absolute; inset: 0;
+display: grid; place-items: center;
+font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+font-size: clamp(16px, 3.2vw, 24px);
+color: #000; opacity: .08; transform: rotate(-18deg);
+}
 
-            function handleLogout() {
-                mainScreen.classList.add('hidden'); loginScreen.classList.remove('hidden');
-                studentIdInput.value = ''; passwordInput.value = '';
-            }
 
-            loginButton.addEventListener('click', handleLogin);
-            passwordInput.addEventListener('keyup', (event) => { if (event.key === 'Enter') handleLogin(); });
-            logoutButton.addEventListener('click', handleLogout);
-            showCardButton.addEventListener('click', () => openModal(cardModal));
-            closeCardButton.addEventListener('click', () => closeModal(cardModal));
-            cardContainer.addEventListener('click', () => cardFlipper.classList.toggle('is-flipped'));
-            closeCardButton.addEventListener('click', (event) => event.stopPropagation());
-            showTimetableButton.addEventListener('click', () => openModal(timetableModal));
-            closeTimetableButton.addEventListener('click', () => closeModal(timetableModal));
-            showGradesButton.addEventListener('click', () => openModal(gradesModal));
-            closeGradesButton.addEventListener('click', () => closeModal(gradesModal));
-            showNoticesButton.addEventListener('click', () => openModal(noticesModal));
-            closeNoticesButton.addEventListener('click', () => closeModal(noticesModal));
-            showProfessionalCardButton.addEventListener('click', () => openModal(professionalCardModal));
-            closeProfessionalCardButton.addEventListener('click', () => closeModal(professionalCardModal));
-        });
-    </script>
-</body>
-</html>
-
+/* Grid principal (duas colunas) */

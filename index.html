@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -83,6 +83,13 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Estilo para a barra vertical CREA */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="bg-slate-100">
@@ -117,67 +124,26 @@
                     <h1 id="studentName" class="text-3xl font-bold text-yellow-600">Nome do Aluno</h1>
                 </div>
                 
-                <!-- NOVO LAYOUT DE BOTÕES EM LISTA -->
                 <div class="space-y-3">
-                    <!-- Botão Carteirinha -->
                     <button id="showCardButton" class="w-full bg-yellow-500 text-white p-4 rounded-xl shadow-lg hover:bg-yellow-600 transition-all flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-white/20 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold">Minha Carteirinha</p>
-                            <p class="text-sm opacity-90">Sua identificação de estudante</p>
-                        </div>
+                        <div class="flex-shrink-0 p-2 bg-white/20 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg></div>
+                        <div><p class="font-semibold">Minha Carteirinha</p><p class="text-sm opacity-90">Sua identificação de estudante</p></div>
                     </button>
-                    <!-- Botão Horários -->
                      <button id="showTimetableButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                         <div>
-                            <p class="font-semibold">Meus Horários</p>
-                            <p class="text-sm text-slate-500">Veja sua grade de aulas</p>
-                        </div>
+                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                         <div><p class="font-semibold">Meus Horários</p><p class="text-sm text-slate-500">Veja sua grade de aulas</p></div>
                      </button>
-                     <!-- Botão Notas -->
                      <button id="showGradesButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold">Notas e Faltas</p>
-                            <p class="text-sm text-slate-500">Acompanhe seu desempenho</p>
-                        </div>
+                        <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+                        <div><p class="font-semibold">Notas e Faltas</p><p class="text-sm text-slate-500">Acompanhe seu desempenho</p></div>
                     </button>
-                    <!-- Novo Botão Avisos -->
                     <button id="showNoticesButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
-                       </div>
-                        <div>
-                            <p class="font-semibold">Mural de Avisos</p>
-                            <p class="text-sm text-slate-500">Fique por dentro das novidades</p>
-                        </div>
+                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg></div>
+                        <div><p class="font-semibold">Mural de Avisos</p><p class="text-sm text-slate-500">Fique por dentro das novidades</p></div>
                     </button>
-                    <!-- Botão Carteira Profissional -->
                     <button id="showProfessionalCardButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
-                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                       </div>
-                        <div>
-                            <p class="font-semibold">Carteira Profissional</p>
-                            <p class="text-sm text-slate-500">Documentos de conselhos (CREA, etc)</p>
-                        </div>
+                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                        <div><p class="font-semibold">Carteira Profissional</p><p class="text-sm text-slate-500">Documentos de conselhos (CREA, etc)</p></div>
                     </button>
                 </div>
             </div>
@@ -193,32 +159,19 @@
                     <!-- FRENTE DA CARTEIRINHA -->
                     <div class="card-face card-front">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
-                            <!-- CABEÇALHO DA CARTEIRINHA MODIFICADO -->
                             <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 flex justify-between items-center">
                                 <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
                                 <img id="modalStudentPhoto" src="" alt="Foto do Aluno" class="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover">
                             </div>
-                            <!-- CORPO DA CARTEIRINHA -->
                             <div class="p-6 flex flex-col items-center flex-grow">
                                 <h4 id="modalStudentName" class="text-2xl font-bold text-gray-800 mt-2 text-center">Nome Completo do Aluno</h4>
                                 <p id="modalStudentCourse" class="text-yellow-600 font-medium text-center">Curso do Aluno</p>
                                 <div class="w-full text-left mt-6 space-y-3">
-                                    <div>
-                                        <span class="text-sm text-gray-400 font-bold uppercase">Matrícula</span>
-                                        <p id="modalStudentId" class="text-lg font-semibold text-gray-700">000000</p>
-                                    </div>
-                                    <div>
-                                        <span class="text-sm text-gray-400 font-bold uppercase">CPF</span>
-                                        <p id="modalStudentCpf" class="text-lg font-semibold text-gray-700">000.000.000-00</p>
-                                    </div>
-                                    <div>
-                                        <span class="text-sm text-gray-400 font-bold uppercase">Validade</span>
-                                        <p id="modalStudentValidity" class="text-lg font-semibold text-gray-700">00/00/0000</p>
-                                    </div>
+                                    <div><span class="text-sm text-gray-400 font-bold uppercase">Matrícula</span><p id="modalStudentId" class="text-lg font-semibold text-gray-700">000000</p></div>
+                                    <div><span class="text-sm text-gray-400 font-bold uppercase">CPF</span><p id="modalStudentCpf" class="text-lg font-semibold text-gray-700">000.000.000-00</p></div>
+                                    <div><span class="text-sm text-gray-400 font-bold uppercase">Validade</span><p id="modalStudentValidity" class="text-lg font-semibold text-gray-700">00/00/0000</p></div>
                                 </div>
-                                <div class="mt-auto w-full flex justify-center py-2">
-                                    <img id="qrCodeImg" src="" alt="QR Code do Aluno" class="w-28 h-28">
-                                </div>
+                                <div class="mt-auto w-full flex justify-center py-2"><img id="qrCodeImg" src="" alt="QR Code do Aluno" class="w-28 h-28"></div>
                                 <p class="text-xs text-gray-400">Clique na carteirinha para virar</p>
                             </div>
                         </div>
@@ -226,21 +179,16 @@
                     <!-- VERSO DA CARTEIRINHA -->
                     <div class="card-face card-back">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
-                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 text-center">
-                                <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
-                            </div>
+                            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 text-center"><h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3></div>
                             <div class="p-4 flex flex-col items-center flex-grow text-center">
                                 <p class="font-semibold text-gray-700 mt-2 text-sm">Documento de Identificação Estudantil</p>
                                 <img id="barcode" src="" alt="Código de Barras" class="mt-4 max-w-full max-h-16 object-contain">
                                 <div class="text-center text-xs text-gray-500 mt-4 border-t pt-2 w-full space-y-2">
                                     <p>Este documento é pessoal e intransferível.</p>
                                     <p>Válido em todo território nacional mediante apresentação de documento oficial com foto.</p>
-                                    <p class="font-bold mt-4 animated-gradient">UNIASSELVI</p>
-                                    <p>Centro Universitário Leonardo da Vinci</p>
+                                    <p class="font-bold mt-4 animated-gradient">UNIASSELVI</p><p>Centro Universitário Leonardo da Vinci</p>
                                 </div>
-                                <div class="mt-auto">
-                                    <p class="text-xs text-gray-400">Clique na carteirinha para virar</p>
-                                </div>
+                                <div class="mt-auto"><p class="text-xs text-gray-400">Clique na carteirinha para virar</p></div>
                             </div>
                         </div>
                     </div>
@@ -250,91 +198,82 @@
         </div>
     </div>
     
-    <!-- MODAL DE HORÁRIOS -->
-    <div id="timetableModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col">
-            <div class="p-6 border-b">
-                <h3 class="text-2xl font-bold text-gray-800 text-center">Meus Horários</h3>
-            </div>
-            <div id="timetableContent" class="p-6 space-y-6 overflow-y-auto">
-                <!-- Conteúdo dos horários será injetado aqui -->
-            </div>
-            <div class="p-4 bg-slate-50 border-t rounded-b-2xl">
-                 <button id="closeTimetableButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button>
-            </div>
-        </div>
-    </div>
+    <!-- MODAIS DE CONTEÚDO -->
+    <div id="timetableModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Meus Horários</h3></div><div id="timetableContent" class="p-6 space-y-6 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeTimetableButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
+    <div id="gradesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Notas e Faltas</h3></div><div id="gradesContent" class="p-6 space-y-4 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeGradesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
+    <div id="noticesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50"><div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col"><div class="p-6 border-b"><h3 class="text-2xl font-bold text-gray-800 text-center">Mural de Avisos</h3></div><div id="noticesContent" class="p-6 space-y-4 overflow-y-auto"></div><div class="p-4 bg-slate-50 border-t rounded-b-2xl"><button id="closeNoticesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button></div></div></div>
 
-    <!-- MODAL DE NOTAS E FALTAS -->
-    <div id="gradesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-         <div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col">
-            <div class="p-6 border-b">
-                <h3 class="text-2xl font-bold text-gray-800 text-center">Notas e Faltas</h3>
-            </div>
-            <div id="gradesContent" class="p-6 space-y-4 overflow-y-auto">
-                <!-- Conteúdo das notas será injetado aqui -->
-            </div>
-            <div class="p-4 bg-slate-50 border-t rounded-b-2xl">
-                 <button id="closeGradesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE AVISOS -->
-    <div id="noticesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col">
-            <div class="p-6 border-b">
-                <h3 class="text-2xl font-bold text-gray-800 text-center">Mural de Avisos</h3>
-            </div>
-            <div id="noticesContent" class="p-6 space-y-4 overflow-y-auto">
-                <!-- Conteúdo dos avisos será injetado aqui -->
-            </div>
-            <div class="p-4 bg-slate-50 border-t rounded-b-2xl">
-                 <button id="closeNoticesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL CARTEIRA PROFISSIONAL (CREA) - DESIGN ATUALIZADO -->
+    <!-- MODAL CARTEIRA PROFISSIONAL (CREA) - DESIGN IDÊNTICO AO OFICIAL -->
     <div id="professionalCardModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="w-full max-w-sm">
-             <div id="professionalCardContent" class="w-full bg-[#EAF3FA] rounded-xl shadow-2xl overflow-hidden flex flex-col border-4 border-white">
-                <!-- Cabeçalho CREA -->
-                <div class="p-3 bg-white">
-                    <div class="flex justify-between items-center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bras%C3%A3o_da_Rep%C3%BAblica_Federativa_do_Brasil.svg/1200px-Bras%C3%A3o_da_Rep%C3%BAblica_Federativa_do_Brasil.svg.png" alt="Brasão da República" class="h-14">
-                         <div class="text-right">
-                            <p class="font-bold text-sm text-blue-900">CONSELHO REGIONAL DE ENGENHARIA E AGRONOMIA DO ESTADO DE SÃO PAULO</p>
-                            <p class="text-xs text-gray-500">CARTEIRA DE IDENTIDADE PROFISSIONAL</p>
-                         </div>
+             <div id="professionalCardContent" class="w-full bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col relative aspect-[85.6/54]">
+                <!-- Background Image -->
+                <div class="absolute inset-0 bg-center bg-no-repeat bg-contain opacity-5" style="background-image: url('https://i.imgur.com/g0y42Dk.png');"></div>
+                <!-- Vertical Bar -->
+                <div class="absolute left-0 top-0 bottom-0 flex items-center justify-center pl-1">
+                    <div class="vertical-text text-slate-300 font-bold text-[7px] tracking-widest space-y-2">
+                        <span>CONFEA • CREA</span>
+                        <span>CONFEA • CREA</span>
+                        <span>CONFEA • CREA</span>
                     </div>
                 </div>
-                <!-- Corpo CREA -->
-                <div class="p-4 flex space-x-4 items-start">
-                     <img id="creaPhoto" src="" alt="Foto do Profissional" class="w-24 h-32 border-2 border-slate-200 object-cover mt-1">
-                     <div class="text-left space-y-2 w-full text-blue-900">
-                         <div>
-                            <span class="text-xs font-bold uppercase">NOME</span>
-                            <p id="creaName" class="text-sm font-semibold leading-tight">Nome Completo do Aluno</p>
-                         </div>
-                         <div>
-                            <span class="text-xs font-bold uppercase">TÍTULO PROFISSIONAL</span>
-                            <p id="creaTitle" class="text-sm font-semibold">Título Profissional</p>
-                         </div>
-                          <div>
-                            <span class="text-xs font-bold uppercase">REGISTRO</span>
-                            <p id="creaNumber" class="text-sm font-semibold">0000000000</p>
-                         </div>
-                     </div>
-                </div>
-                <div class="px-4 pb-4 flex items-end justify-between">
-                     <img id="creaQrCode" src="" alt="QR Code" class="w-16 h-16">
-                    <div class="text-center">
-                        <p class="text-xs text-blue-900">Assinatura do Portador</p>
+                <!-- Main Content -->
+                <div class="p-2.5 z-10 flex flex-col h-full">
+                    <div class="flex items-start justify-between">
+                        <img src="https://i.imgur.com/g0y42Dk.png" alt="Brasão da República" class="h-10" onerror="this.style.display='none'">
+                        <div class="text-[6px] text-center font-semibold text-blue-900 leading-tight">
+                            <p>REPÚBLICA FEDERATIVA DO BRASIL</p>
+                            <p>SERVIÇO PÚBLICO FEDERAL</p>
+                            <p>CONSELHO FEDERAL DE ENGENHARIA E AGRONOMIA</p>
+                            <p>CONSELHO REGIONAL DE ENGENHARIA E AGRONOMIA</p>
+                            <p>CARTEIRA DE IDENTIDADE PROFISSIONAL</p>
+                        </div>
+                        <div class="text-center">
+                             <p class="font-bold text-blue-900 text-sm">CREA-SP</p>
+                             <p class="text-[7px] font-semibold text-blue-900">Registro Crea Nº</p>
+                             <p id="creaRegNumber" class="text-[7px] font-semibold text-blue-900 -mt-0.5"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-blue-800 text-white text-xs text-center p-1">
-                    VÁLIDA EM TODO O TERRITÓRIO NACIONAL
+                    <div class="flex-grow flex mt-1">
+                        <div class="w-1/4 flex flex-col justify-between">
+                            <div class="w-16 h-12 bg-gray-200 flex items-center justify-center rounded-md border border-gray-300">
+                               <img src="https://i.imgur.com/BHsS2s1.png" alt="Chip" class="w-full h-full object-cover rounded-md" onerror="this.style.display='none'">
+                            </div>
+                             <div class="text-[7px] font-bold text-blue-900">
+                                <p>TÍTULO PROFISSIONAL</p>
+                                <div id="creaTitles" class="font-semibold text-[8px] leading-tight"></div>
+                             </div>
+                             <div></div>
+                        </div>
+                        <div class="w-1/2 px-2 text-center text-blue-900">
+                             <p class="text-[7px] font-bold">NOME</p>
+                             <p id="creaName" class="text-sm font-semibold leading-tight"></p>
+                             <p class="text-[7px] font-bold mt-2">DATA DO REGISTRO NO CREA-SP</p>
+                             <p id="creaRegDate" class="text-sm font-semibold leading-tight"></p>
+                        </div>
+                        <div class="w-1/4 text-center">
+                            <img id="creaPhoto" src="" class="w-full border-2 border-blue-900">
+                            <div class="text-[7px] font-bold text-blue-900 mt-1">
+                                <p>REGISTRO NACIONAL</p>
+                                <p id="creaNatNumber" class="font-semibold text-xs"></p>
+                                <p class="mt-1">DATA DE EMISSÃO</p>
+                                <p id="creaIssueDate" class="font-semibold text-xs"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end text-[6px] text-blue-900 font-semibold">
+                         <div class="text-center">
+                            <img src="https://i.imgur.com/8X1X8J4.png" alt="Assinatura Confea" class="h-4 mx-auto" onerror="this.style.display='none'">
+                            <p class="border-t border-blue-900 mt-0.5 px-2">PRESIDENTE DO CONFEA</p>
+                        </div>
+                         <div class="text-center">
+                             <img src="https://i.imgur.com/B1Q2e3f.png" alt="Assinatura Crea" class="h-4 mx-auto" onerror="this.style.display='none'">
+                            <p class="border-t border-blue-900 mt-0.5 px-2">PRESIDENTE DO CREA-SP</p>
+                        </div>
+                    </div>
+                    <div class="text-[5px] text-center mt-1 text-gray-600">
+                        Vale como Documento de Identidade em todo o território nacional e tem Fé Pública, conforme o § 2º do art. 56 da Lei nº 5194 de 24/12/66 e Lei nº 6206 de 07/05/75.
+                    </div>
                 </div>
             </div>
             <button id="closeProfessionalCardButton" class="mt-4 w-full bg-white/80 backdrop-blur-sm text-gray-800 py-3 rounded-lg font-semibold hover:bg-white transition-colors">Fechar</button>
@@ -344,251 +283,163 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DADOS FALSOS PARA DEMONSTRAÇÃO ---
             const fakeStudentData = {
-                id: 'Mot671367',
-                password: '123',
-                name: 'Rodrigo Barroso',
-                fullName: 'Rodrigo L. Barroso',
-                cpf: '22673912878',
-                course: 'Tecnologia da Informação',
-                validity: '31/12/2025',
+                id: 'Mot671367', password: '123', name: 'Rodrigo Barroso',
+                fullName: 'Rodrigo L. Barroso', cpf: '22673912878',
+                course: 'Tecnologia da Informação', validity: '31/12/2025',
                 photoUrl: 'foto_rodrigo.jpeg' 
             };
             
             const fakeTimetableData = [
-                { dia: "Segunda-feira", aulas: [
-                    { horario: "19:00 - 20:40", materia: "Algoritmos e Lógica de Programação" },
-                    { horario: "20:50 - 22:30", materia: "Banco de Dados" },
-                ]},
-                { dia: "Terça-feira", aulas: [
-                    { horario: "19:00 - 22:30", materia: "Desenvolvimento Web Full Stack" },
-                ]},
-                { dia: "Quarta-feira", aulas: [
-                    { horario: "19:00 - 20:40", materia: "Engenharia de Software" },
-                    { horario: "20:50 - 22:30", materia: "Redes de Computadores" },
-                ]},
-                 { dia: "Sexta-feira", aulas: [
-                    { horario: "19:00 - 22:30", materia: "Projeto Integrador" },
-                ]},
+                { dia: "Segunda-feira", aulas: [{ horario: "19:00 - 20:40", materia: "Algoritmos e Lógica" }, { horario: "20:50 - 22:30", materia: "Banco de Dados" }]},
+                { dia: "Terça-feira", aulas: [{ horario: "19:00 - 22:30", materia: "Desenvolvimento Web" }]},
+                { dia: "Quarta-feira", aulas: [{ horario: "19:00 - 20:40", materia: "Engenharia de Software" }, { horario: "20:50 - 22:30", materia: "Redes de Computadores" }]},
+                { dia: "Sexta-feira", aulas: [{ horario: "19:00 - 22:30", materia: "Projeto Integrador" }]},
             ];
             
             const fakeGradesData = [
-                { materia: "Algoritmos e Lógica", n1: 8.5, n2: 9.0, mediaFinal: 8.8, faltas: 2 },
+                { materia: "Algoritmos", n1: 8.5, n2: 9.0, mediaFinal: 8.8, faltas: 2 },
                 { materia: "Banco de Dados", n1: 7.0, n2: 7.5, mediaFinal: 7.3, faltas: 0 },
                 { materia: "Desenvolvimento Web", n1: 9.5, n2: 10.0, mediaFinal: 9.8, faltas: 1 },
-                { materia: "Engenharia de Software", n1: 6.5, n2: 8.0, mediaFinal: 7.3, faltas: 4 },
-                { materia: "Redes de Computadores", n1: 8.0, n2: 8.0, mediaFinal: 8.0, faltas: 0 },
+                { materia: "Eng. de Software", n1: 6.5, n2: 8.0, mediaFinal: 7.3, faltas: 4 },
+                { materia: "Redes", n1: 8.0, n2: 8.0, mediaFinal: 8.0, faltas: 0 },
                 { materia: "Projeto Integrador", n1: 10.0, n2: 9.5, mediaFinal: 9.8, faltas: 0 },
             ];
             
             const fakeNoticesData = [
-                { date: "05/09/2025", title: "Início do Período de Rematrícula", content: "O período para rematrícula do próximo semestre já está aberto. Acesse o portal financeiro para garantir sua vaga." },
-                { date: "01/09/2025", title: "Feriado Nacional - Independência", content: "Informamos que não haverá expediente acadêmico e administrativo no dia 7 de Setembro." },
-                { date: "28/08/2025", title: "Palestra sobre Carreira em TI", content: "Participe da palestra com especialistas do mercado sobre as tendências e oportunidades na área de Tecnologia da Informação. Dia 15/09, no auditório." },
+                { date: "05/09/2025", title: "Início do Período de Rematrícula", content: "O período para rematrícula do próximo semestre já está aberto." },
+                { date: "01/09/2025", title: "Feriado Nacional - Independência", content: "Não haverá expediente acadêmico e administrativo no dia 7 de Setembro." },
+                { date: "28/08/2025", title: "Palestra sobre Carreira em TI", content: "Participe da palestra com especialistas do mercado no dia 15/09." },
             ];
             
             const fakeProfessionalCardData = {
-                title: "Estudante de T.I.",
-                creaNumber: "SP-5070123456/TD-JR",
-                issueDate: "08/09/2025"
+                titles: ["TÉCNOLOGO EM ANÁLISE E DESENV. DE SISTEMAS"],
+                regNumber: "SP-5070422331/TD",
+                natNumber: "261884503-2",
+                regDate: "20/12/2025",
+                issueDate: "15/01/2026"
             };
 
-
-            // --- SELETORES DE ELEMENTOS ---
             const loginScreen = document.getElementById('loginScreen');
             const mainScreen = document.getElementById('mainScreen');
-            
-            // Modais
             const cardModal = document.getElementById('cardModal');
             const timetableModal = document.getElementById('timetableModal');
             const gradesModal = document.getElementById('gradesModal');
             const noticesModal = document.getElementById('noticesModal');
             const professionalCardModal = document.getElementById('professionalCardModal');
-
-            // Carteirinha
             const cardContainer = document.getElementById('cardContainer');
             const cardFlipper = document.getElementById('cardFlipper');
-            
-            // Inputs e Botões
             const studentIdInput = document.getElementById('studentId');
             const passwordInput = document.getElementById('password');
             const loginButton = document.getElementById('loginButton');
             const loginError = document.getElementById('loginError');
             const logoutButton = document.getElementById('logoutButton');
-            
             const showCardButton = document.getElementById('showCardButton');
             const closeCardButton = document.getElementById('closeCardButton');
-            
             const showTimetableButton = document.getElementById('showTimetableButton');
             const closeTimetableButton = document.getElementById('closeTimetableButton');
-            
             const showGradesButton = document.getElementById('showGradesButton');
             const closeGradesButton = document.getElementById('closeGradesButton');
-            
             const showNoticesButton = document.getElementById('showNoticesButton');
             const closeNoticesButton = document.getElementById('closeNoticesButton');
-            
             const showProfessionalCardButton = document.getElementById('showProfessionalCardButton');
             const closeProfessionalCardButton = document.getElementById('closeProfessionalCardButton');
 
-
-            // --- FUNÇÕES ---
-
-            function formatCPF(cpf) {
-                cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
-                return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-            }
+            function formatCPF(cpf) { return cpf.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); }
 
             function handleLogin() {
                 if (studentIdInput.value === fakeStudentData.id && passwordInput.value === fakeStudentData.password) {
-                    loginScreen.classList.add('hidden');
-                    mainScreen.classList.remove('hidden');
+                    loginScreen.classList.add('hidden'); mainScreen.classList.remove('hidden');
                     document.getElementById('studentName').textContent = fakeStudentData.name;
                     loginError.classList.add('hidden');
-                } else {
-                    loginError.classList.remove('hidden');
-                }
+                } else { loginError.classList.remove('hidden'); }
             }
             
-            // Funções de popular conteúdo
             function populateCardModal() {
-                const formattedCpf = formatCPF(fakeStudentData.cpf);
+                const fCpf = formatCPF(fakeStudentData.cpf);
                 document.getElementById('modalStudentPhoto').src = fakeStudentData.photoUrl;
                 document.getElementById('modalStudentName').textContent = fakeStudentData.fullName;
                 document.getElementById('modalStudentCourse').textContent = fakeStudentData.course;
                 document.getElementById('modalStudentId').textContent = fakeStudentData.id;
                 document.getElementById('modalStudentValidity').textContent = fakeStudentData.validity;
-                document.getElementById('modalStudentCpf').textContent = formattedCpf;
-                const qrData = `UNIASSELVI\nMatrícula: ${fakeStudentData.id}\nNome: ${fakeStudentData.fullName}\nCPF: ${formattedCpf}`;
+                document.getElementById('modalStudentCpf').textContent = fCpf;
+                const qrData = `UNIASSELVI\nMatrícula: ${fakeStudentData.id}\nNome: ${fakeStudentData.fullName}\nCPF: ${fCpf}`;
                 document.getElementById('qrCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}&qzone=1`;
                 document.getElementById('barcode').src = `https://barcode.tec-it.com/barcode.ashx?data=${fakeStudentData.id}&code=Code128&dpi=96`;
             }
             
             function populateTimetableModal() {
-                const content = document.getElementById('timetableContent');
                 let html = '';
                 fakeTimetableData.forEach(item => {
-                    html += `<div class="border-b pb-4">
-                                <h4 class="text-xl font-bold text-yellow-600 mb-3">${item.dia}</h4>
-                                <div class="space-y-2">`;
-                    item.aulas.forEach(aula => {
-                        html += `<div class="flex justify-between items-center bg-slate-100 p-3 rounded-lg">
-                                    <span class="font-semibold text-gray-700">${aula.materia}</span>
-                                    <span class="text-sm text-gray-500">${aula.horario}</span>
-                                 </div>`;
-                    });
+                    html += `<div class="border-b pb-4 last:border-b-0"><h4 class="text-xl font-bold text-yellow-600 mb-3">${item.dia}</h4><div class="space-y-2">`;
+                    item.aulas.forEach(a => { html += `<div class="flex justify-between items-center bg-slate-100 p-3 rounded-lg"><span class="font-semibold text-gray-700">${a.materia}</span><span class="text-sm text-gray-500">${a.horario}</span></div>`; });
                     html += `</div></div>`;
                 });
-                content.innerHTML = html;
+                document.getElementById('timetableContent').innerHTML = html;
             }
             
             function populateGradesModal() {
-                const content = document.getElementById('gradesContent');
-                let html = `<div class="grid grid-cols-4 gap-2 font-bold text-sm text-gray-500 border-b pb-2">
-                                <span>DISCIPLINA</span>
-                                <span class="text-center">N1</span>
-                                <span class="text-center">N2</span>
-                                <span class="text-center">FALTAS</span>
-                            </div>`;
+                let html = `<div class="grid grid-cols-4 gap-2 font-bold text-sm text-gray-500 border-b pb-2"><span>DISCIPLINA</span><span class="text-center">N1</span><span class="text-center">N2</span><span class="text-center">FALTAS</span></div>`;
                 fakeGradesData.forEach(item => {
                     const mediaColor = item.mediaFinal >= 7 ? 'text-green-600' : 'text-red-600';
-                    html += `<div class="grid grid-cols-4 gap-2 items-center border-b py-3 text-sm">
-                                <span class="font-semibold text-gray-800">${item.materia}</span>
-                                <span class="text-center text-gray-600">${item.n1.toFixed(1)}</span>
-                                <span class="text-center text-gray-600">${item.n2.toFixed(1)}</span>
-                                <span class="text-center text-gray-600">${item.faltas}</span>
-                             </div>
-                             <div class="text-right text-sm font-bold pr-2 -mt-2">
-                                Média Final: <span class="${mediaColor}">${item.mediaFinal.toFixed(1)}</span>
-                             </div>`;
+                    html += `<div class="grid grid-cols-4 gap-2 items-center border-b py-3 text-sm"><span class="font-semibold text-gray-800">${item.materia}</span><span class="text-center text-gray-600">${item.n1.toFixed(1)}</span><span class="text-center text-gray-600">${item.n2.toFixed(1)}</span><span class="text-center text-gray-600">${item.faltas}</span></div><div class="text-right text-sm font-bold pr-2 -mt-2">Média Final: <span class="${mediaColor}">${item.mediaFinal.toFixed(1)}</span></div>`;
                 });
-                content.innerHTML = html;
+                document.getElementById('gradesContent').innerHTML = html;
             }
             
             function populateNoticesModal() {
-                const content = document.getElementById('noticesContent');
                 let html = '';
-                fakeNoticesData.forEach(notice => {
-                    html += `<div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                                <p class="text-sm font-semibold text-yellow-600 mb-1">${notice.date}</p>
-                                <h4 class="text-lg font-bold text-gray-800 mb-2">${notice.title}</h4>
-                                <p class="text-gray-600">${notice.content}</p>
-                             </div>`;
-                });
-                content.innerHTML = html;
+                fakeNoticesData.forEach(n => { html += `<div class="bg-slate-50 p-4 rounded-lg border border-slate-200"><p class="text-sm font-semibold text-yellow-600 mb-1">${n.date}</p><h4 class="text-lg font-bold text-gray-800 mb-2">${n.title}</h4><p class="text-gray-600">${n.content}</p></div>`; });
+                document.getElementById('noticesContent').innerHTML = html;
             }
 
             function populateProfessionalCardModal() {
                 document.getElementById('creaPhoto').src = fakeStudentData.photoUrl;
-                document.getElementById('creaName').textContent = fakeStudentData.fullName;
-                document.getElementById('creaTitle').textContent = fakeProfessionalCardData.title;
-                document.getElementById('creaNumber').textContent = fakeProfessionalCardData.creaNumber;
-                
-                const qrData = `CREA-SP\nRegistro: ${fakeProfessionalCardData.creaNumber}\nNome: ${fakeStudentData.fullName}`;
-                document.getElementById('creaQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}&qzone=1`;
+                document.getElementById('creaName').textContent = fakeStudentData.fullName.toUpperCase();
+                document.getElementById('creaTitles').innerHTML = fakeProfessionalCardData.titles.join('<br>');
+                document.getElementById('creaRegNumber').textContent = fakeProfessionalCardData.regNumber;
+                document.getElementById('creaNatNumber').textContent = fakeProfessionalCardData.natNumber;
+                document.getElementById('creaRegDate').textContent = fakeProfessionalCardData.regDate;
+                document.getElementById('creaIssueDate').textContent = fakeProfessionalCardData.issueDate;
             }
 
-
-            // Funções de controle de Modal
             function openModal(modal) {
                 if (modal.id === 'cardModal') populateCardModal();
                 if (modal.id === 'timetableModal') populateTimetableModal();
                 if (modal.id === 'gradesModal') populateGradesModal();
                 if (modal.id === 'noticesModal') populateNoticesModal();
                 if (modal.id === 'professionalCardModal') populateProfessionalCardModal();
-                
                 if (modal.id === 'cardModal') cardFlipper.classList.remove('is-flipped');
-                
-                modal.classList.remove('hidden', 'modal-leave', 'modal-leave-active');
-                modal.classList.add('modal-enter');
-                requestAnimationFrame(() => modal.classList.add('modal-enter-active'));
+                modal.classList.remove('hidden'); requestAnimationFrame(() => modal.classList.add('modal-enter-active'));
             }
 
             function closeModal(modal) {
-                 modal.classList.remove('modal-enter', 'modal-enter-active');
-                 modal.classList.add('modal-leave');
-                 requestAnimationFrame(() => modal.classList.add('modal-leave-active'));
+                 modal.classList.remove('modal-enter-active');
                  setTimeout(() => modal.classList.add('hidden'), 300);
             }
 
             function handleLogout() {
-                mainScreen.classList.add('hidden');
-                loginScreen.classList.remove('hidden');
-                studentIdInput.value = '';
-                passwordInput.value = '';
+                mainScreen.classList.add('hidden'); loginScreen.classList.remove('hidden');
+                studentIdInput.value = ''; passwordInput.value = '';
             }
 
-            // --- EVENT LISTENERS ---
             loginButton.addEventListener('click', handleLogin);
-            passwordInput.addEventListener('keyup', (event) => {
-                if (event.key === 'Enter') handleLogin();
-            });
+            passwordInput.addEventListener('keyup', (event) => { if (event.key === 'Enter') handleLogin(); });
             logoutButton.addEventListener('click', handleLogout);
-
-            // Carteirinha
             showCardButton.addEventListener('click', () => openModal(cardModal));
             closeCardButton.addEventListener('click', () => closeModal(cardModal));
             cardContainer.addEventListener('click', () => cardFlipper.classList.toggle('is-flipped'));
             closeCardButton.addEventListener('click', (event) => event.stopPropagation());
-            
-            // Horários
             showTimetableButton.addEventListener('click', () => openModal(timetableModal));
             closeTimetableButton.addEventListener('click', () => closeModal(timetableModal));
-            
-            // Notas
             showGradesButton.addEventListener('click', () => openModal(gradesModal));
             closeGradesButton.addEventListener('click', () => closeModal(gradesModal));
-            
-            // Avisos
             showNoticesButton.addEventListener('click', () => openModal(noticesModal));
             closeNoticesButton.addEventListener('click', () => closeModal(noticesModal));
-
-            // Carteira Profissional
             showProfessionalCardButton.addEventListener('click', () => openModal(professionalCardModal));
             closeProfessionalCardButton.addEventListener('click', () => closeModal(professionalCardModal));
-
         });
     </script>
 </body>
 </html>
+

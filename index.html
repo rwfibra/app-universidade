@@ -59,6 +59,22 @@
         .card-back {
             transform: rotateY(180deg);
         }
+
+        /* Efeito de gradiente animado para o nome da universidade */
+        .animated-gradient {
+            background: linear-gradient(90deg, #fde047, #facc15, #eab308, #facc15, #fde047);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
 <body class="bg-slate-100">
@@ -73,7 +89,7 @@
                          <h1 class="text-2xl font-bold text-gray-800">Portal do</h1>
                          <h2 class="text-3xl font-bold text-yellow-500 -mt-1">Aluno</h2>
                     </div>
-                    <h3 class="font-bold text-yellow-500 text-2xl tracking-wide">UNIASSELVI</h3>
+                    <h3 class="font-bold text-xl tracking-wide animated-gradient">UNIASSELVI</h3>
                 </div>
                 <p class="text-gray-500 mb-8 text-center">Acesse sua conta para continuar.</p>
                 <div class="space-y-4">

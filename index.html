@@ -167,6 +167,18 @@
                             <p class="text-sm text-slate-500">Fique por dentro das novidades</p>
                         </div>
                     </button>
+                    <!-- Botão Carteira Profissional -->
+                    <button id="showProfessionalCardButton" class="w-full bg-slate-100 text-slate-700 p-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center space-x-4 text-left">
+                       <div class="flex-shrink-0 p-2 bg-slate-200 rounded-full">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                       </div>
+                        <div>
+                            <p class="font-semibold">Carteira Profissional</p>
+                            <p class="text-sm text-slate-500">Documentos de conselhos (CREA, etc)</p>
+                        </div>
+                    </button>
                 </div>
             </div>
              <button id="logoutButton" class="mt-6 text-gray-500 font-medium hover:text-yellow-600">Sair</button>
@@ -283,6 +295,52 @@
         </div>
     </div>
 
+    <!-- MODAL CARTEIRA PROFISSIONAL (CREA) - DESIGN ATUALIZADO -->
+    <div id="professionalCardModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="w-full max-w-sm">
+             <div id="professionalCardContent" class="w-full bg-[#EAF3FA] rounded-xl shadow-2xl overflow-hidden flex flex-col border-4 border-white">
+                <!-- Cabeçalho CREA -->
+                <div class="p-3 bg-white">
+                    <div class="flex justify-between items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bras%C3%A3o_da_Rep%C3%BAblica_Federativa_do_Brasil.svg/1200px-Bras%C3%A3o_da_Rep%C3%BAblica_Federativa_do_Brasil.svg.png" alt="Brasão da República" class="h-14">
+                         <div class="text-right">
+                            <p class="font-bold text-sm text-blue-900">CONSELHO REGIONAL DE ENGENHARIA E AGRONOMIA DO ESTADO DE SÃO PAULO</p>
+                            <p class="text-xs text-gray-500">CARTEIRA DE IDENTIDADE PROFISSIONAL</p>
+                         </div>
+                    </div>
+                </div>
+                <!-- Corpo CREA -->
+                <div class="p-4 flex space-x-4 items-start">
+                     <img id="creaPhoto" src="" alt="Foto do Profissional" class="w-24 h-32 border-2 border-slate-200 object-cover mt-1">
+                     <div class="text-left space-y-2 w-full text-blue-900">
+                         <div>
+                            <span class="text-xs font-bold uppercase">NOME</span>
+                            <p id="creaName" class="text-sm font-semibold leading-tight">Nome Completo do Aluno</p>
+                         </div>
+                         <div>
+                            <span class="text-xs font-bold uppercase">TÍTULO PROFISSIONAL</span>
+                            <p id="creaTitle" class="text-sm font-semibold">Título Profissional</p>
+                         </div>
+                          <div>
+                            <span class="text-xs font-bold uppercase">REGISTRO</span>
+                            <p id="creaNumber" class="text-sm font-semibold">0000000000</p>
+                         </div>
+                     </div>
+                </div>
+                <div class="px-4 pb-4 flex items-end justify-between">
+                     <img id="creaQrCode" src="" alt="QR Code" class="w-16 h-16">
+                    <div class="text-center">
+                        <p class="text-xs text-blue-900">Assinatura do Portador</p>
+                    </div>
+                </div>
+                <div class="bg-blue-800 text-white text-xs text-center p-1">
+                    VÁLIDA EM TODO O TERRITÓRIO NACIONAL
+                </div>
+            </div>
+            <button id="closeProfessionalCardButton" class="mt-4 w-full bg-white/80 backdrop-blur-sm text-gray-800 py-3 rounded-lg font-semibold hover:bg-white transition-colors">Fechar</button>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -329,6 +387,12 @@
                 { date: "01/09/2025", title: "Feriado Nacional - Independência", content: "Informamos que não haverá expediente acadêmico e administrativo no dia 7 de Setembro." },
                 { date: "28/08/2025", title: "Palestra sobre Carreira em TI", content: "Participe da palestra com especialistas do mercado sobre as tendências e oportunidades na área de Tecnologia da Informação. Dia 15/09, no auditório." },
             ];
+            
+            const fakeProfessionalCardData = {
+                title: "Estudante de T.I.",
+                creaNumber: "SP-5070123456/TD-JR",
+                issueDate: "08/09/2025"
+            };
 
 
             // --- SELETORES DE ELEMENTOS ---
@@ -340,6 +404,7 @@
             const timetableModal = document.getElementById('timetableModal');
             const gradesModal = document.getElementById('gradesModal');
             const noticesModal = document.getElementById('noticesModal');
+            const professionalCardModal = document.getElementById('professionalCardModal');
 
             // Carteirinha
             const cardContainer = document.getElementById('cardContainer');
@@ -363,6 +428,9 @@
             
             const showNoticesButton = document.getElementById('showNoticesButton');
             const closeNoticesButton = document.getElementById('closeNoticesButton');
+            
+            const showProfessionalCardButton = document.getElementById('showProfessionalCardButton');
+            const closeProfessionalCardButton = document.getElementById('closeProfessionalCardButton');
 
 
             // --- FUNÇÕES ---
@@ -451,6 +519,16 @@
                 content.innerHTML = html;
             }
 
+            function populateProfessionalCardModal() {
+                document.getElementById('creaPhoto').src = fakeStudentData.photoUrl;
+                document.getElementById('creaName').textContent = fakeStudentData.fullName;
+                document.getElementById('creaTitle').textContent = fakeProfessionalCardData.title;
+                document.getElementById('creaNumber').textContent = fakeProfessionalCardData.creaNumber;
+                
+                const qrData = `CREA-SP\nRegistro: ${fakeProfessionalCardData.creaNumber}\nNome: ${fakeStudentData.fullName}`;
+                document.getElementById('creaQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}&qzone=1`;
+            }
+
 
             // Funções de controle de Modal
             function openModal(modal) {
@@ -458,6 +536,7 @@
                 if (modal.id === 'timetableModal') populateTimetableModal();
                 if (modal.id === 'gradesModal') populateGradesModal();
                 if (modal.id === 'noticesModal') populateNoticesModal();
+                if (modal.id === 'professionalCardModal') populateProfessionalCardModal();
                 
                 if (modal.id === 'cardModal') cardFlipper.classList.remove('is-flipped');
                 
@@ -505,8 +584,11 @@
             showNoticesButton.addEventListener('click', () => openModal(noticesModal));
             closeNoticesButton.addEventListener('click', () => closeModal(noticesModal));
 
+            // Carteira Profissional
+            showProfessionalCardButton.addEventListener('click', () => openModal(professionalCardModal));
+            closeProfessionalCardButton.addEventListener('click', () => closeModal(professionalCardModal));
+
         });
     </script>
 </body>
 </html>
-

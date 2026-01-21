@@ -65,7 +65,6 @@
 
     <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
 
-        <!-- TELA DE LOGIN -->
         <div id="loginScreen" class="w-full max-w-sm">
             <div class="bg-white p-8 rounded-2xl shadow-xl text-center">
                 <div class="mx-auto w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mb-4 ring-8 ring-yellow-50">
@@ -75,6 +74,7 @@
                 </div>
                 <h1 class="text-2xl font-bold text-gray-800 mb-2">Portal do Aluno</h1>
                 <p class="text-gray-500 mb-6">Acesse sua conta para continuar</p>
+   
                 <div class="space-y-4">
                     <input id="studentId" type="text" placeholder="Nº de Matrícula" class="w-full px-4 py-3 bg-slate-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     <input id="password" type="password" placeholder="Senha" class="w-full px-4 py-3 bg-slate-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
@@ -84,26 +84,26 @@
             </div>
         </div>
 
-        <!-- TELA PRINCIPAL -->
         <div id="mainScreen" class="hidden w-full max-w-md text-center">
-             <div class="bg-white p-6 rounded-2xl shadow-xl w-full">
+            <div class="bg-white p-6 rounded-2xl shadow-xl w-full">
                 <h2 class="text-xl font-semibold text-gray-800">Bem-vindo(a),</h2>
                 <h1 id="studentName" class="text-3xl font-bold text-yellow-600 mb-8">Nome do Aluno</h1>
                 
                 <div class="space-y-4">
-                     <button id="showCardButton" class="w-full bg-gradient-to-br from-yellow-400 to-yellow-500 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
+                    <button id="showCardButton" class="w-full bg-gradient-to-br from-yellow-400 to-yellow-500 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                         </svg>
                         <span>Ver Minha Carteirinha</span>
                     </button>
-                     <button id="showTimetableButton" class="w-full bg-slate-100 text-slate-700 py-4 px-6 rounded-xl font-semibold hover:bg-slate-200 transition-colors flex items-center justify-center space-x-2">
+                   
+                    <button id="showTimetableButton" class="w-full bg-slate-100 text-slate-700 py-4 px-6 rounded-xl font-semibold hover:bg-slate-200 transition-colors flex items-center justify-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                         <span>Meus Horários</span>
-                     </button>
-                     <button id="showGradesButton" class="w-full bg-slate-100 text-slate-700 py-4 px-6 rounded-xl font-semibold hover:bg-slate-200 transition-colors flex items-center justify-center space-x-2">
+                        <span>Meus Horários</span>
+                    </button>
+                    <button id="showGradesButton" class="w-full bg-slate-100 text-slate-700 py-4 px-6 rounded-xl font-semibold hover:bg-slate-200 transition-colors flex items-center justify-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
@@ -115,12 +115,11 @@
         </div>
     </div>
 
-    <!-- MODAL DA CARTEIRINHA -->
     <div id="cardModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 modal-enter">
         <div class="w-full max-w-sm">
             <div class="card-flipper-container cursor-pointer w-full h-[580px]" id="cardContainer">
                 <div id="cardFlipper" class="card-flipper w-full h-full">
-                    <!-- FRENTE DA CARTEIRINHA -->
+                  
                     <div class="card-face card-front">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
                             <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 text-center">
@@ -151,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- VERSO DA CARTEIRINHA -->
+               
                     <div class="card-face card-back">
                         <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden h-full flex flex-col">
                             <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-4 text-center">
@@ -178,30 +177,26 @@
         </div>
     </div>
     
-    <!-- MODAL DE HORÁRIOS -->
     <div id="timetableModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col">
             <div class="p-6 border-b">
                 <h3 class="text-2xl font-bold text-gray-800 text-center">Meus Horários</h3>
             </div>
             <div id="timetableContent" class="p-6 space-y-6 overflow-y-auto">
-                <!-- Conteúdo dos horários será injetado aqui -->
-            </div>
+                </div>
             <div class="p-4 bg-slate-50 border-t rounded-b-2xl">
                  <button id="closeTimetableButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE NOTAS E FALTAS -->
     <div id="gradesModal" class="modal hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
          <div class="bg-white rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col">
             <div class="p-6 border-b">
                 <h3 class="text-2xl font-bold text-gray-800 text-center">Notas e Faltas</h3>
             </div>
             <div id="gradesContent" class="p-6 space-y-4 overflow-y-auto">
-                <!-- Conteúdo das notas será injetado aqui -->
-            </div>
+                </div>
             <div class="p-4 bg-slate-50 border-t rounded-b-2xl">
                  <button id="closeGradesButton" class="w-full bg-slate-200 text-slate-700 py-3 rounded-lg font-semibold hover:bg-slate-300 transition-colors">Fechar</button>
             </div>
@@ -219,10 +214,10 @@
                 fullName: 'Rodrigo Laurindo Barroso',
                 cpf: '22673912878',
                 course: 'Tecnologia da Informação',
-                validity: '31/12/2025',
+                validity: '31/12/2026', // ATUALIZADO 
                 photoUrl: 'foto_rodrigo.jpeg' 
             };
-            
+
             const fakeTimetableData = [
                 { dia: "Segunda-feira", aulas: [
                     { horario: "19:00 - 20:40", materia: "Algoritmos e Lógica de Programação" },
@@ -239,7 +234,7 @@
                     { horario: "19:00 - 22:30", materia: "Projeto Integrador" },
                 ]},
             ];
-            
+
             const fakeGradesData = [
                 { materia: "Algoritmos e Lógica", n1: 8.5, n2: 9.0, mediaFinal: 8.8, faltas: 2 },
                 { materia: "Banco de Dados", n1: 7.0, n2: 7.5, mediaFinal: 7.3, faltas: 0 },
@@ -248,7 +243,6 @@
                 { materia: "Redes de Computadores", n1: 8.0, n2: 8.0, mediaFinal: 8.0, faltas: 0 },
                 { materia: "Projeto Integrador", n1: 10.0, n2: 9.5, mediaFinal: 9.8, faltas: 0 },
             ];
-
 
             // --- SELETORES DE ELEMENTOS ---
             const loginScreen = document.getElementById('loginScreen');
@@ -279,7 +273,6 @@
             const showGradesButton = document.getElementById('showGradesButton');
             const closeGradesButton = document.getElementById('closeGradesButton');
 
-
             // --- FUNÇÕES ---
 
             function formatCPF(cpf) {
@@ -307,6 +300,7 @@
                 document.getElementById('modalStudentId').textContent = fakeStudentData.id;
                 document.getElementById('modalStudentValidity').textContent = fakeStudentData.validity;
                 document.getElementById('modalStudentCpf').textContent = formattedCpf;
+                
                 const qrData = `UNIASSELVI\nMatrícula: ${fakeStudentData.id}\nNome: ${fakeStudentData.fullName}\nCPF: ${formattedCpf}`;
                 document.getElementById('qrCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}&qzone=1`;
                 document.getElementById('barcode').src = `https://barcode.tec-it.com/barcode.ashx?data=${fakeStudentData.id}&code=Code128&dpi=96`;
@@ -319,13 +313,15 @@
                     html += `<div class="border-b pb-4">
                                 <h4 class="text-xl font-bold text-yellow-600 mb-3">${item.dia}</h4>
                                 <div class="space-y-2">`;
+ 
                     item.aulas.forEach(aula => {
                         html += `<div class="flex justify-between items-center bg-slate-100 p-3 rounded-lg">
                                     <span class="font-semibold text-gray-700">${aula.materia}</span>
                                     <span class="text-sm text-gray-500">${aula.horario}</span>
                                  </div>`;
                     });
-                    html += `</div></div>`;
+                  
+                   html += `</div></div>`;
                 });
                 content.innerHTML = html;
             }
@@ -345,10 +341,10 @@
                                 <span class="text-center text-gray-600">${item.n1.toFixed(1)}</span>
                                 <span class="text-center text-gray-600">${item.n2.toFixed(1)}</span>
                                 <span class="text-center text-gray-600">${item.faltas}</span>
-                             </div>
+                              </div>
                              <div class="text-right text-sm font-bold pr-2 -mt-2">
                                 Média Final: <span class="${mediaColor}">${item.mediaFinal.toFixed(1)}</span>
-                             </div>`;
+                        </div>`;
                 });
                 content.innerHTML = html;
             }
@@ -393,7 +389,7 @@
             closeCardButton.addEventListener('click', () => closeModal(cardModal));
             cardContainer.addEventListener('click', () => cardFlipper.classList.toggle('is-flipped'));
             closeCardButton.addEventListener('click', (event) => event.stopPropagation());
-            
+
             // Horários
             showTimetableButton.addEventListener('click', () => openModal(timetableModal));
             closeTimetableButton.addEventListener('click', () => closeModal(timetableModal));
